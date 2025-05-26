@@ -4,10 +4,10 @@ metadata:
   name:  angular-app
   namespace: argocd
 spec:
-  project: nourpfe
+  project: default
   destination:
-    namespace: internship
-    server: https://kubernetes.default.svc 
+    namespace: default
+    server: https://kubernetes.default.svc  
   source:
     path: angular-app 
     repoURL: "https://github.com/NourLassoued/argocdpfe.git" 
