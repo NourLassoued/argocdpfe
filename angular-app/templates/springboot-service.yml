@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: spring-boot-service
+  namespace: {{ .Values.springboot.namespace }}
+spec:
+  type: {{ .Values.springboot.service.type }}
+  selector:
+    app: spring-boot-pod
+  ports:
+    - port: {{ .Values.springboot.service.port }}
+      targetPort: {{ .Values.springboot.service.targetPort }}
+      nodePort: {{ .Values.springboot.service.nodePort }}
+

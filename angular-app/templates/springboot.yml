@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.springboot.name }}
+  namespace: {{ .Values.springboot.namespace }}
+spec:
+  replicas: {{ .Values.springboot.replicaCount }}
+  selector:
+    matchLabels:
+      app: spring-boot-pod
+  template:
+    metadata:
+      labels:
+        app: spring-boot-pod
+    spec:
+      containers:
+        - name: spring-boot-container
+          image: "{{ .Values.springboot.image.repository }}:{{ .Values.springboot.image.tag }}"
+          imagePullPolicy: {{ .Values.springboot.image.pullPolicy }}
+          ports:
+            - containerPort: {{ .Values.springboot.containerPort }}
+          resources:
+            requests:
+              memory: {{ .Values.springboot.resources.requests.memory }}
+              cpu: {{ .Values.springboot.resources.requests.cpu }}
+            limits:
+              memory: {{ .Values.springboot.resources.limits.memory }}
+              cpu: {{ .Values.springboot.resources.limits.cpu }}
+          env:
+            - name: SPRING_DATASOURCE_URL
+              value: "{{ .Values.springboot.env.SPRING_DATASOURCE_URL }}"
+            - name: SPRING_DATASOURCE_USERNAME
+              value: "{{ .Values.springboot.env.SPRING_DATASOURCE_USERNAME }}"
+            - name: SPRING_DATASOURCE_PASSWORD
+              value: "{{ .Values.springboot.env.SPRING_DATASOURCE_PASSWORD }}"
+            - name: SPRING_JPA_HIBERNATE_DDL_AUTO
+              value: "{{ .Values.springboot.env.SPRING_JPA_HIBERNATE_DDL_AUTO }}"
+

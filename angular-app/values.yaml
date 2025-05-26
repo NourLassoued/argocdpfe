@@ -1,0 +1,77 @@
+namespace: nourpfe
+
+angular:
+  name: angular
+  image:
+    repository: nourlassoued/nourangular
+    tag: "1.1.21"
+    pullPolicy: Always
+  replicaCount: 2
+  labels:
+    app: angular-pod
+    type: angular-monolithique
+  containerPort: 80
+  resources:
+    requests:
+      memory: "256Mi"
+      cpu: "250m"
+    limits:
+      memory: "512Mi"
+      cpu: "500m"
+  service:
+    type: NodePort
+    port: 4200
+    targetPort: 80
+    nodePort: 30800
+  hpa:
+    enabled: true
+    minReplicas: 2
+    maxReplicas: 5
+    targetCPUUtilizationPercentage: 50
+
+mysql:
+  name: mysql
+  image:
+    repository: mysql
+    tag: "8.0"
+  rootPassword: root
+  database: backendnourpfe
+  containerPort: 3306
+  persistence:
+    enabled: true
+    existingClaim: mysql-pvc
+    storage: 1Gi
+    storageClass: standard
+  service:
+    name: mysql-service
+    type: ClusterIP
+    port: 3306
+    targetPort: 3306
+
+springboot:
+  name: spring-boot-app
+  namespace: nourpfe
+  image:
+    repository: nourlassoued/nourspring
+    tag: "1.0.13"
+    pullPolicy: Always
+  replicaCount: 1
+  containerPort: 8088
+  resources:
+    requests:
+      memory: "256Mi"
+      cpu: "250m"
+    limits:
+      memory: "512Mi"
+      cpu: "500m"
+  env:
+    SPRING_DATASOURCE_URL: "jdbc:mysql://mysql-service:3306/backendnourpfe?createDatabaseIfNotExist=true"
+    SPRING_DATASOURCE_USERNAME: "root"
+    SPRING_DATASOURCE_PASSWORD: "root"
+    SPRING_JPA_HIBERNATE_DDL_AUTO: "update"
+  service:
+    type: NodePort
+    port: 8088
+    targetPort: 8088
+    nodePort: 30088
+

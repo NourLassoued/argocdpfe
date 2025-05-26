@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name:  angular-app
+  namespace: argocd
+spec:
+  project: nourpfe
+  destination:
+    namespace: internship
+    server: https://kubernetes.default.svc 
+  source:
+    path: angular-app 
+    repoURL: "https://github.com/NourLassoued/argocdpfe.git" 
+    targetRevision: HEAD 
+  syncPolicy:
+    automated: {}
+    syncOptions:
+      - CreateNamespace=true
