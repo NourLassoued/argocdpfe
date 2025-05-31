@@ -4,10 +4,10 @@ metadata:
   name: {{ .Values.mysql.name }}
   namespace: {{ .Values.namespace }}
 spec:
-  replicas: 1
   selector:
     matchLabels:
       app: {{ .Values.mysql.name }}
+  replicas: 1
   template:
     metadata:
       labels:
@@ -24,11 +24,10 @@ spec:
             - name: MYSQL_DATABASE
               value: "{{ .Values.mysql.database }}"
           volumeMounts:
-            - name: mysql-data
-              mountPath: /var/lib/mysql
+            - mountPath: /var/lib/mysql
+              name: mysql-storage
       volumes:
-        - name: mysql-data
+        - name: mysql-storage
           persistentVolumeClaim:
-            claimName: {{ .Values.mysql.persistence.existingClaim }}
-
+            claimName: {{ .Values.mysql.persistence.existingClaim | default "mysql-pvc" | quote }}
 

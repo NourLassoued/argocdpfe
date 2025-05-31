@@ -1,7 +1,7 @@
 {{/*
 Expand the name of the chart.
 */}}
-{{- define "nourlassouedpfe.name" -}}
+{{- define "lassoued-pfe.name" -}}
 {{- default .Chart.Name .Values.nameOverride | trunc 63 | trimSuffix "-" }}
 {{- end }}
 
@@ -10,7 +10,7 @@ Create a default fully qualified app name.
 We truncate at 63 chars because some Kubernetes name fields are limited to this (by the DNS naming spec).
 If release name contains chart name it will be used as a full name.
 */}}
-{{- define "nourlassouedpfe.fullname" -}}
+{{- define "lassoued-pfe.fullname" -}}
 {{- if .Values.fullnameOverride }}
 {{- .Values.fullnameOverride | trunc 63 | trimSuffix "-" }}
 {{- else }}
@@ -26,16 +26,16 @@ If release name contains chart name it will be used as a full name.
 {{/*
 Create chart name and version as used by the chart label.
 */}}
-{{- define "nourlassouedpfe.chart" -}}
+{{- define "lassoued-pfe.chart" -}}
 {{- printf "%s-%s" .Chart.Name .Chart.Version | replace "+" "_" | trunc 63 | trimSuffix "-" }}
 {{- end }}
 
 {{/*
 Common labels
 */}}
-{{- define "nourlassouedpfe.labels" -}}
-helm.sh/chart: {{ include "nourlassouedpfe.chart" . }}
-{{ include "nourlassouedpfe.selectorLabels" . }}
+{{- define "lassoued-pfe.labels" -}}
+helm.sh/chart: {{ include "lassoued-pfe.chart" . }}
+{{ include "lassoued-pfe.selectorLabels" . }}
 {{- if .Chart.AppVersion }}
 app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
 {{- end }}
@@ -45,17 +45,17 @@ app.kubernetes.io/managed-by: {{ .Release.Service }}
 {{/*
 Selector labels
 */}}
-{{- define "nourlassouedpfe.selectorLabels" -}}
-app.kubernetes.io/name: {{ include "nourlassouedpfe.name" . }}
+{{- define "lassoued-pfe.selectorLabels" -}}
+app.kubernetes.io/name: {{ include "lassoued-pfe.name" . }}
 app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end }}
 
 {{/*
 Create the name of the service account to use
 */}}
-{{- define "nourlassouedpfe.serviceAccountName" -}}
+{{- define "lassoued-pfe.serviceAccountName" -}}
 {{- if .Values.serviceAccount.create }}
-{{- default (include "nourlassouedpfe.fullname" .) .Values.serviceAccount.name }}
+{{- default (include "lassoued-pfe.fullname" .) .Values.serviceAccount.name }}
 {{- else }}
 {{- default "default" .Values.serviceAccount.name }}
 {{- end }}
