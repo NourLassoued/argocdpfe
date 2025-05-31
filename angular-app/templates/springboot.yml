@@ -10,7 +10,8 @@ spec:
       app: spring-boot-pod
   template:
     metadata:
-      labels: {{ toYaml .Values.springboot.labels | indent 8 }}
+      labels: |
+    {{ toYaml .Values.springboot.labels | indent 8 }}
     spec:
       containers:
         - name: spring-boot-container
