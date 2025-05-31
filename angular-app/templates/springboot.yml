@@ -11,7 +11,7 @@ spec:
   template:
     metadata:
       labels: 
-    {{ toYaml .Values.springboot.labels | indent 8 }}
+          {{ toYaml .Values.springboot.labels | indent 6 }}
     spec:
       containers:
         - name: spring-boot-container
