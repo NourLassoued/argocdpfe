@@ -11,4 +11,7 @@ spec:
     - port: {{ .Values.springboot.service.port }}
       targetPort: {{ .Values.springboot.service.targetPort }}
       nodePort: {{ .Values.springboot.service.nodePort }}
-
+    - name: metrics
+      port: {{ .Values.springboot.metricsPort | default 8088 }}
+      targetPort: metrics
+      protocol: TCP

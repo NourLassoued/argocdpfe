@@ -57,6 +57,7 @@ springboot:
     pullPolicy: Always
   replicaCount: 1
   containerPort: 8088
+  metricsPort: 8088
   resources:
     requests:
       memory: "256Mi"
@@ -69,6 +70,12 @@ springboot:
     SPRING_DATASOURCE_USERNAME: "root"
     SPRING_DATASOURCE_PASSWORD: "root"
     SPRING_JPA_HIBERNATE_DDL_AUTO: "update"
+  monitoring:
+    enabled: true
+    serviceMonitor:
+      enabled: true
+      path: /actuator/prometheus
+      port: metrics
   service:
     type: NodePort
     port: 8088
