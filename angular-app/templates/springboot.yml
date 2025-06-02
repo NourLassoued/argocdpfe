@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: {{ .Values.springboot.name }}
-  namespace: {{ .Values.springboot.namespace }}
+  namespace: {{ .Values.namespace }}
 spec:
   replicas: {{ .Values.springboot.replicaCount }}
   selector:
