@@ -8,10 +8,12 @@ spec:
   selector:
     app: spring-boot-pod
   ports:
-    - port: {{ .Values.springboot.service.port }}
+    - name: http
+      port: {{ .Values.springboot.service.port }}
       targetPort: {{ .Values.springboot.service.targetPort }}
       nodePort: {{ .Values.springboot.service.nodePort }}
     - name: metrics
-      port: {{ .Values.springboot.metricsPort | default 8088 }}
-      targetPort: metrics
+      port: 8089
+      targetPort: 8089
       protocol: TCP
+

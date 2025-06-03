@@ -42,12 +42,12 @@ spec:
           livenessProbe:
             httpGet:
               path: /actuator/health
-              port: {{ .Values.springboot.metricsPort | default 8088 }}
+              port: {{ .Values.springboot.metricsPort }}
             initialDelaySeconds: 30
             periodSeconds: 30
           readinessProbe:
             httpGet:
               path: /actuator/health
-              port: {{ .Values.springboot.metricsPort | default 8088 }}
+              port: {{ .Values.springboot.metricsPort }}
             initialDelaySeconds: 15
             periodSeconds: 10
