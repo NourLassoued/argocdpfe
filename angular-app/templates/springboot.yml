@@ -20,7 +20,7 @@ spec:
           imagePullPolicy: {{ .Values.springboot.image.pullPolicy }}
           ports:
             - containerPort: {{ .Values.springboot.containerPort }}
-            - containerPort: {{ .Values.springboot.metricsPort | default 8089 }}
+            - containerPort: {{ .Values.springboot.metricsPort | default 8088 }}
 
           resources:
             requests:
