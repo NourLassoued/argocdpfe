@@ -6,7 +6,7 @@ angular:
     repository: nourlassoued/nourangular
     tag: "1.1.63"
     pullPolicy: Always
-  replicaCount: 2
+  replicaCount: 1
   labels:
     app: angular-pod
     type: angular-monolithique
@@ -62,11 +62,11 @@ springboot:
     enabled: true
   resources:
     requests:
-      memory: "256Mi"
-      cpu: "250m"
+      memory: "128Mi"
+      cpu: "100m"
     limits:
-      memory: "512Mi"
-      cpu: "500m"
+      memory: "384Mi"
+      cpu: "300m"
   env:
     SPRING_DATASOURCE_URL: "jdbc:mysql://mysql-service:3306/backendnourpfe?createDatabaseIfNotExist=true"
     SPRING_DATASOURCE_USERNAME: "root"
