@@ -20,8 +20,6 @@ spec:
           imagePullPolicy: {{ .Values.springboot.image.pullPolicy }}
           ports:
             - containerPort: {{ .Values.springboot.containerPort }}
-            - containerPort: {{ .Values.springboot.metricsPort | default 8088 }}
-
           resources:
             requests:
               memory: {{ .Values.springboot.resources.requests.memory }}
@@ -39,15 +37,4 @@ spec:
               value: "{{ .Values.springboot.env.SPRING_DATASOURCE_PASSWORD }}"
             - name: SPRING_JPA_HIBERNATE_DDL_AUTO
               value: "{{ .Values.springboot.env.SPRING_JPA_HIBERNATE_DDL_AUTO }}"
-          livenessProbe:
-            httpGet:
-              path: /nour/actuator/health
-              port: {{ .Values.springboot.metricsPort }}
-            initialDelaySeconds: 30
-            periodSeconds: 30
-          readinessProbe:
-            httpGet:
-              path: /nour/actuator/health
-              port: {{ .Values.springboot.metricsPort }}
-            initialDelaySeconds: 15
-            periodSeconds: 10
+       
