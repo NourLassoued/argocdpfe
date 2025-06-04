@@ -57,9 +57,6 @@ springboot:
     pullPolicy: Always
   replicaCount: 1
   containerPort: 8088
-  metricsPort: 8089
-  monitoring:
-    enabled: true
   resources:
     requests:
       memory: "128Mi"
