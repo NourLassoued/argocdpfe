@@ -4,7 +4,7 @@ angular:
   name: angular
   image:
     repository: nourlassoued/nourangular
- tag: "1.1.69"
+ tag: "1.1.70"
     pullPolicy: Always
   replicaCount: 1
   labels:
