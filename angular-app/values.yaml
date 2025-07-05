@@ -71,7 +71,7 @@ springboot:
     targetPort: 8088
     nodePort: 31000
 
- hpa:
+  hpa:
     enabled: true
     minReplicas: 2
     maxReplicas: 5
