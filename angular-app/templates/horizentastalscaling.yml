@@ -1,22 +1,22 @@
-{{- if .Values.angular.hpa.enabled }}
+{{- if .Values.springboot.hpa.enabled }}
 apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
 metadata:
-  name: {{ .Values.angular.name }}-scaling
+  name: {{ .Values.springboot.name }}-scaling
   namespace: {{ .Values.namespace }}
 spec:
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
-    name: {{ .Values.angular.name }}
-  minReplicas: {{ .Values.angular.hpa.minReplicas }}
-  maxReplicas: {{ .Values.angular.hpa.maxReplicas }}
+    name: {{ .Values.springboot.name }}
+  minReplicas: {{ .Values.springboot.hpa.minReplicas }}
+  maxReplicas: {{ .Values.springboot.hpa.maxReplicas }}
   metrics:
     - type: Resource
       resource:
         name: cpu
         target:
           type: Utilization
-          averageUtilization: {{ .Values.angular.hpa.targetCPUUtilizationPercentage }}
+          averageUtilization: {{ .Values.springboot.hpa.targetCPUUtilizationPercentage }}
 {{- end }}
 
