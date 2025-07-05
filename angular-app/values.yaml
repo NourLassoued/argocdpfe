@@ -23,11 +23,7 @@ angular:
     port: 4200
     targetPort: 80
     nodePort: 30800
-  hpa:
-    enabled: true
-    minReplicas: 2
-    maxReplicas: 5
-    targetCPUUtilizationPercentage: 50
+ 
 
 mysql:
   name: mysql
@@ -75,3 +71,8 @@ springboot:
     targetPort: 8088
     nodePort: 31000
 
+ hpa:
+    enabled: true
+    minReplicas: 2
+    maxReplicas: 5
+    targetCPUUtilizationPercentage: 50
