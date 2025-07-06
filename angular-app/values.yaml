@@ -49,7 +49,7 @@ springboot:
   name: spring-boot-app
   image:
     repository: nourlassoued/nourspring
-    tag: "1.0.70"
+    tag: "1.0.71"
     pullPolicy: Always
   replicaCount: 1
   containerPort: 8088
