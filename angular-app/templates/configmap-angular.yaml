@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: angular-config
+  namespace: {{ .Values.namespace | default "lassoued" }}
+data:
+  config.json: |
+    {
+      "apiUrl": "{{ .Values.angular.apiUrl }}"
+    }
