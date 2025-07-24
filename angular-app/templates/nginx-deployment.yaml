@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.nginx.name }}
+  namespace: {{ .Values.namespace }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: {{ .Values.nginx.name }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.nginx.name }}
+    spec:
+      containers:
+        - name: nginx
+          image: "{{ .Values.nginx.image.repository }}:{{ .Values.nginx.image.tag }}"
+          ports:
+            - containerPort: {{ .Values.nginx.containerPort }}
+          volumeMounts:
+            - name: nginx-images-volume
+              mountPath: {{ .Values.nginx.volume.mountPath }}
+      volumes:
+        - name: nginx-images-volume
+          persistentVolumeClaim:
+            claimName: nginx-images-pvc
