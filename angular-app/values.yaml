@@ -76,3 +76,19 @@ springboot:
     minReplicas: 2
     maxReplicas: 5
     targetCPUUtilizationPercentage: 50
+nginx:
+  name: nginx-images
+  image:
+    repository: nginx
+    tag: "latest"
+  containerPort: 80
+  service:
+    type: NodePort
+    port: 80
+    targetPort: 80
+    nodePort: 32000
+  volume:
+    enabled: true
+    mountPath: /usr/share/nginx/html/img
+    hostPath: /mnt/data/images  
+    existingClaim: ""
