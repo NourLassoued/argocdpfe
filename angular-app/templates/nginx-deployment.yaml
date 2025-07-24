@@ -23,5 +23,6 @@ spec:
               mountPath: {{ .Values.nginx.volume.mountPath }}
       volumes:
         - name: nginx-images-volume
-          persistentVolumeClaim:
-            claimName: nginx-images-pvc
+          hostPath:
+            path: {{ .Values.nginx.volume.hostPath }}
+            type: Directory
