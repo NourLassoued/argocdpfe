@@ -78,7 +78,7 @@ springboot:
     targetCPUUtilizationPercentage: 50
   volume:
     enabled: true
-    mountPath: /uploads  
+    mountPath: /C/xampppidev/htdocs/img
     hostPath: /mnt/data/images
     existingClaim: ""  
 nginx:
