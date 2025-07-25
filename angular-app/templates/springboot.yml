@@ -37,7 +37,7 @@ spec:
             - name: SPRING_JPA_HIBERNATE_DDL_AUTO
               value: "{{ .Values.springboot.env.SPRING_JPA_HIBERNATE_DDL_AUTO }}"
           volumeMounts:
-            - name: springboot-images
+            - name: springboot-image
               mountPath: {{ .Values.springboot.volume.mountPath }}
 
       volumes:
