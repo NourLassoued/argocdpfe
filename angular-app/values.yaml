@@ -76,6 +76,11 @@ springboot:
     minReplicas: 2
     maxReplicas: 5
     targetCPUUtilizationPercentage: 50
+  volume:
+    enabled: true
+    mountPath: /mnt/data/images
+    hostPath: /mnt/data/images
+    existingClaim: ""  
 nginx:
   name: nginx-images
   image:
