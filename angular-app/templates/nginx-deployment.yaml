@@ -14,15 +14,20 @@ spec:
         app: {{ .Values.nginx.name }}
     spec:
       containers:
-        - name: nginx
+        - name: {{ .Values.nginx.name }}
           image: "{{ .Values.nginx.image.repository }}:{{ .Values.nginx.image.tag }}"
           ports:
             - containerPort: {{ .Values.nginx.containerPort }}
           volumeMounts:
-            - name: nginx-images-volume
+            - name: nginx-images
               mountPath: {{ .Values.nginx.volume.mountPath }}
+            - name: nginx-config-volume
+              mountPath: /etc/nginx/conf.d/default.conf
+              subPath: default.conf
       volumes:
-        - name: nginx-images-volume
+        - name: nginx-images
           hostPath:
             path: {{ .Values.nginx.volume.hostPath }}
-            type: Directory
+        - name: nginx-config-volume
+          configMap:
+            name: nginx-config
