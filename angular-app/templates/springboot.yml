@@ -15,7 +15,6 @@ spec:
         monitoring: "true"
     spec:
 
-      # 🔧 Étape 1 : initContainer qui crée le chemin Windows simulé dans le conteneur
       initContainers:
         - name: create-windows-path
           image: busybox
@@ -54,13 +53,13 @@ spec:
               value: "{{ .Values.springboot.env.SPRING_JPA_HIBERNATE_DDL_AUTO }}"
           volumeMounts:
             - name: springboot-images
-              mountPath: {{ .Values.springboot.volume.mountPath }} # Ex: /mnt/data/images
+              mountPath: {{ .Values.springboot.volume.mountPath }}
             - name: fake-c-dir
-              mountPath: /C/xampppidev/htdocs # pour que ton code Java fonctionne avec C:/...
+              mountPath: /C/xampppidev/htdocs
 
       volumes:
         - name: springboot-images
           hostPath:
-            path: {{ .Values.springboot.volume.hostPath }} # Ex: /mnt/data/images
+            path: {{ .Values.springboot.volume.hostPath }}
         - name: fake-c-dir
           emptyDir: {}
