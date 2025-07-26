@@ -22,8 +22,9 @@ spec:
             - sh
             - -c
             - |
-              mkdir -p /C/xampppidev/htdocs
-              ln -s /mnt/data/images /C/xampppidev/htdocs/img
+             mkdir -p /C/xampppidev/htdocs && \
+             rm -rf /C/xampppidev/htdocs/img && \
+             ln -s /mnt/data/images /C/xampppidev/htdocs/img
           volumeMounts:
             - name: springboot-images
               mountPath: /mnt/data/images
