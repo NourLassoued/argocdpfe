@@ -105,23 +105,4 @@ nginx:
       memory: "64Mi"
       cpu: "100m"
 
-chatbot:
-  name: chatbot
-  image:
-    repository: nourlassoued/chatbot-flask
-    tag: "latest"
-    pullPolicy: Always
-  replicaCount: 1
-  containerPort: 5000
-  service:
-    type: NodePort
-    port: 5000
-    targetPort: 5000
-    nodePort: 31100
-  resources:
-    requests:
-      memory: "64Mi"
-      cpu: "50m"
-    limits:
-      memory: "128Mi"
-      cpu: "100m"
+
