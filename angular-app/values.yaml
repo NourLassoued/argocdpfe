@@ -72,7 +72,7 @@ springboot:
     nodePort: 31000
 
   hpa:
-    enabled: true
+    enabled: false
     minReplicas: 2
     maxReplicas: 5
     targetCPUUtilizationPercentage: 50
